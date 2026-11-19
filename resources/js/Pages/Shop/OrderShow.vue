@@ -1,0 +1,4 @@
+<script setup>
+import {Link} from '@inertiajs/vue3';import AppLayout from '../../Layouts/AppLayout.vue';defineProps({order:Object});const money=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
+</script>
+<template><AppLayout><div class="page"><div class="panel"><div style="font-size:48px">🎉</div><h1 class="page-title">Pesanan berhasil dibuat!</h1><p class="muted">Nomor pesanan: <strong>{{order.order_number}}</strong></p><p>Status: <strong>{{order.status}}</strong></p><h3>Rincian pesanan</h3><table class="table"><tr v-for="item in order.items" :key="item.id"><td>{{item.product_name}} × {{item.qty}}</td><td>{{money(item.subtotal)}}</td></tr></table><h2>Total: {{money(order.total)}}</h2><p>Alamat: {{order.address}}</p><Link href="/pesanan" class="btn">Lihat Riwayat Pesanan</Link></div></div></AppLayout></template>
